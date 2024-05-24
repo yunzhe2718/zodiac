@@ -8,8 +8,7 @@ def zodiac_calculator(birthdate):
     solar = Solar.from_date(birthdate)
     lunar = Converter.Solar2Lunar(solar)
     zodiac_index = (lunar.year - 2019 ) % 12
-    result = "Your Chinese zodiac sign is " + zodiac_list[zodiac_index]
-    return result
+    return zodiac_index
 
 st.title("Chinese Zodiac Calculator")
 st.write("Enter your date of birth to calculate your Chinese zodiac sign.")
@@ -20,6 +19,5 @@ birthdate = st.date_input("Enter your date of birth",
     max_value=datetime.date.today())
 
 if st.button("Calculate"):
-    result = zodiac_calculator(birthdate)
-    st.write(result)
-
+    result = zodiac_list[zodiac_calculator(birthdate)]
+    st.write(f"Your Chinese zodiac sign is the **{result}**. ")
