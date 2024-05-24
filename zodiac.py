@@ -3,16 +3,11 @@ import datetime
 from lunarcalendar import Converter, Solar, Lunar, DateNotExist
 from PIL import Image
 
-# Open an image file
-image = Image.open("img/Rat.png")
-
-
 zoo = ["Pig", "Rat", "Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Sheep", "Monkey", "Rooster", "Dog"]
 
 icons = []
 for animal in zoo:
     icons.append(Image.open("img/" + animal + ".png"))
-
 
 
 def zodiac_calculator(birthdate):
@@ -33,6 +28,7 @@ if st.button("Calculate"):
     result = zodiac_calculator(birthdate)
     zodiac_name = zoo[result]
     st.write(f"Your Chinese zodiac sign is the **{zodiac_name}**. ")
+    # make 2 columns to display a smaller icon
     col1, col2 = st.columns(2)
     with col1:
         st.image(icons[result], use_column_width=True)
