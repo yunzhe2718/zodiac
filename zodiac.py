@@ -1,7 +1,7 @@
 import streamlit as st
 from datetime import datetime
 
-def astrology_calculator(birthdate, birthplace):
+def astrology_calculator(birthdate):
     # Mock calculation for demonstration purposes
     result = f"Astrological data for {birthdate.strftime('%Y-%m-%d')}"
     return result
