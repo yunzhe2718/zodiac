@@ -1,18 +1,25 @@
 import streamlit as st
-from datetime import datetime
+import datetime
 from lunarcalendar import Converter, Solar, Lunar, DateNotExist
 
-def astrology_calculator(birthdate):
-    # Mock calculation for demonstration purposes
-    result = f"Astrological data for {birthdate.strftime('%Y-%m-%d')}"
+zodiac_list = ["Pig", "Rat", "Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Sheep", "Monkey", "Rooster", "Dog"]
+
+def zodiac_calculator(birthdate):
+    solar = Solar.from_date(birthdate)
+    lunar = Converter.Solar2Lunar(solar)
+    zodiac_index = (lunar.year - 2019 ) % 12
+    result = "Your Chinese zodiac sign is " + zodiac_list[zodiac_index]
     return result
 
 st.title("Chinese Zodiac Calculator")
 st.write("Enter your date of birth to calculate your Chinese zodiac sign.")
 
-birthdate = st.date_input("Enter your birthdate", value=datetime(2000, 1, 1))
+birthdate = st.date_input("Enter your date of birth", 
+    value=datetime.date(2000, 1, 1),     
+    min_value=datetime.date(1900, 1, 1),
+    max_value=datetime.date.today())
 
 if st.button("Calculate"):
-    result = astrology_calculator(birthdate)
+    result = zodiac_calculator(birthdate)
     st.write(result)
 
