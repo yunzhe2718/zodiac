@@ -1,6 +1,6 @@
 import streamlit as st
 import datetime
-from lunarcalendar import Converter, Solar, Lunar, DateNotExist
+from lunarcalendar import Converter, Solar
 from PIL import Image
 
 zoo = ["Pig", "Rat", "Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Sheep", "Monkey", "Rooster", "Dog"]
@@ -8,7 +8,6 @@ zoo = ["Pig", "Rat", "Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Sheep
 icons = []
 for animal in zoo:
     icons.append(Image.open("img/" + animal + ".png"))
-
 
 def zodiac_calculator(birthdate):
     solar = Solar.from_date(birthdate)
@@ -22,7 +21,7 @@ st.write("Enter your date of birth to calculate your Chinese zodiac sign.")
 birthdate = st.date_input("Enter your date of birth", 
     value=datetime.date(2000, 1, 1),     
     min_value=datetime.date(1900, 1, 1),
-    max_value=datetime.date.today())
+    max_value=datetime.date(2030, 12, 31))
 
 if st.button("Calculate"):
     result = zodiac_calculator(birthdate)
