@@ -19,7 +19,7 @@ st.title("Chinese Zodiac Calculator")
 st.write("Enter your date of birth to calculate your Chinese zodiac sign.")
 
 birthdate = st.date_input("Enter your date of birth", 
-    value=datetime.date(2000, 1, 1),     
+    value=datetime.date.today(),     
     min_value=datetime.date(1900, 1, 1),
     max_value=datetime.date(2030, 12, 31))
 
